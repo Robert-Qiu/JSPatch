@@ -18,6 +18,8 @@
 		DE94AE2B1AF246C000E461D4 /* JSPatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE94AE2A1AF246C000E461D4 /* JSPatchTests.m */; };
 		DE94AE461AF2480000E461D4 /* JPTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DE94AE441AF2480000E461D4 /* JPTestObject.m */; };
 		DE94AE471AF2480000E461D4 /* test.js in Resources */ = {isa = PBXBuildFile; fileRef = DE94AE451AF2480000E461D4 /* test.js */; };
+		E1B89E8A1B1EA51E000645C2 /* JPEngineAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B89E891B1EA51E000645C2 /* JPEngineAttributes.m */; };
+		E1B89E8D1B1EA998000645C2 /* MyStructProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B89E8C1B1EA998000645C2 /* MyStructProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,10 @@
 		DE94AE431AF2480000E461D4 /* JPTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTestObject.h; sourceTree = "<group>"; };
 		DE94AE441AF2480000E461D4 /* JPTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTestObject.m; sourceTree = "<group>"; };
 		DE94AE451AF2480000E461D4 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
+		E1B89E881B1EA51E000645C2 /* JPEngineAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPEngineAttributes.h; sourceTree = "<group>"; };
+		E1B89E891B1EA51E000645C2 /* JPEngineAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPEngineAttributes.m; sourceTree = "<group>"; };
+		E1B89E8B1B1EA998000645C2 /* MyStructProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStructProvider.h; sourceTree = "<group>"; };
+		E1B89E8C1B1EA998000645C2 /* MyStructProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyStructProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,8 @@
 				2D5D892A1B0B8C3B009382EC /* JPEngine.h */,
 				2D5D892B1B0B8C3B009382EC /* JPEngine.m */,
 				2D5D892C1B0B8C3B009382EC /* JSPatch.js */,
+				E1B89E881B1EA51E000645C2 /* JPEngineAttributes.h */,
+				E1B89E891B1EA51E000645C2 /* JPEngineAttributes.m */,
 			);
 			name = JSPatch;
 			path = ../../JSPatch;
@@ -129,6 +137,8 @@
 				DE94AE441AF2480000E461D4 /* JPTestObject.m */,
 				DE94AE451AF2480000E461D4 /* test.js */,
 				DE94AE2A1AF246C000E461D4 /* JSPatchTests.m */,
+				E1B89E8B1B1EA998000645C2 /* MyStructProvider.h */,
+				E1B89E8C1B1EA998000645C2 /* MyStructProvider.m */,
 				DE94AE281AF246C000E461D4 /* Supporting Files */,
 			);
 			path = JSPatchTests;
@@ -245,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D5D89211B0B8BFF009382EC /* AppDelegate.m in Sources */,
+				E1B89E8A1B1EA51E000645C2 /* JPEngineAttributes.m in Sources */,
 				2D5D892D1B0B8C3B009382EC /* JPEngine.m in Sources */,
 				2D5D89251B0B8BFF009382EC /* JPViewController.m in Sources */,
 				2D6D12FF1B0B8CF20095A435 /* main.m in Sources */,
@@ -255,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1B89E8D1B1EA998000645C2 /* MyStructProvider.m in Sources */,
 				DE94AE461AF2480000E461D4 /* JPTestObject.m in Sources */,
 				DE94AE2B1AF246C000E461D4 /* JSPatchTests.m in Sources */,
 			);

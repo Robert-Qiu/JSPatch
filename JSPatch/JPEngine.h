@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "JPEngineAttributes.h"
 
 @interface JPEngine : NSObject
 + (void)startEngine;
++ (void)startEngine:(JPEngineAttributes*)attr;
 + (JSValue *)evaluateScript:(NSString *)script;
 + (JSContext *)context;
 @end

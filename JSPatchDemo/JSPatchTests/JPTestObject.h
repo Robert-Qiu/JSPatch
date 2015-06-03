@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef struct MyStruct
+{
+    int p1;
+    int p2;
+} MyStruct;
+
 @interface JPTestObject : NSObject
 - (void)funcWithInt:(int)intValue;
 @property (nonatomic, assign) BOOL funcReturnVoidPassed;
@@ -63,8 +69,13 @@
 
 @property (nonatomic, assign) BOOL consoleLogPassed;
 @property (nonatomic, assign) BOOL overrideParentMethodPassed;
+@property (nonatomic, copy) NSString* funcReturnMyStructValue;
+@property (nonatomic, copy) NSString* funcSetMyStructValue;
 
 - (NSString*)funcOverrideParentMethod;
+- (MyStruct)funcReturnMyStruct;
+- (NSString*)testFuncReturnMyStruct;
+- (void)funcSetMyStruct:(MyStruct)myStruct;
 
 @end
 

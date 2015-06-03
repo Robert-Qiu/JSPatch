@@ -10,6 +10,7 @@
 #import <XCTest/XCTest.h>
 #import "JPEngine.h"
 #import "JPTestObject.h"
+#import "MyStructProvider.h"
 
 @interface JSPatchTests : XCTestCase
 
@@ -19,7 +20,11 @@
 
 - (void)setUp {
     [super setUp];
-    [JPEngine startEngine];
+    
+    JPEngineAttributes *engineAttr = [[JPEngineAttributes alloc] init];
+    engineAttr.customStructProvider = [[MyStructProvider alloc] init];
+
+    [JPEngine startEngine:engineAttr];
 }
 
 - (void)tearDown {
@@ -91,6 +96,10 @@
     XCTAssert(obj.newTestObjectCustomFuncPassed, @"newTestObjectCustomFuncPassed");
     
     XCTAssertEqualObjects(@"overrided",[subObj funcOverrideParentMethod]);
+    
+    NSString* value = [obj testFuncReturnMyStruct];
+    XCTAssertEqualObjects(@"struct:p1=10,p2=20",value);
+    XCTAssertEqualObjects(@"struct:p1=10,p2=20",obj.funcReturnMyStructValue);
 }
 
 @end

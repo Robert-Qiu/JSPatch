@@ -269,6 +269,23 @@ typedef void (^JPTestObjectBlock)(NSDictionary *dict, UIView *view);
     return @"orgi";
 }
 
+- (MyStruct)funcReturnMyStruct
+{
+    MyStruct s;
+    s.p1 = 10;
+    s.p2 = 20;
+    return s;
+}
+
+- (NSString*)testFuncReturnMyStruct
+{
+    return nil;
+}
+
+- (void)funcSetMyStruct:(MyStruct)myStruct
+{
+}
+
 @end
 
 

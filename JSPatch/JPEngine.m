@@ -17,6 +17,7 @@
 @implementation JPEngine
 
 static JSContext *_context;
+static JPEngineAttributes *_engineAttr;
 
 #pragma mark - APIS
 
@@ -115,6 +116,12 @@ static NSRegularExpression* regex;
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"JSPatch" ofType:@"js"];
     NSString *jsCore = [[NSString alloc] initWithData:[[NSFileManager defaultManager] contentsAtPath:path] encoding:NSUTF8StringEncoding];
     [_context evaluateScript:jsCore];
+}
+
++ (void)startEngine:(JPEngineAttributes*)attr
+{
+    _engineAttr = attr;
+    [JPEngine startEngine];
 }
 
 #pragma mark - Implements
@@ -351,6 +358,17 @@ static void JPForwardInvocation(id slf, SEL selector, NSInvocation *invocation)
                 JP_FWD_ARG_STRUCT(CGPoint, pointToDictionary)
                 JP_FWD_ARG_STRUCT(CGSize, sizeToDictionary)
                 JP_FWD_ARG_STRUCT(NSRange, rangeToDictionary)
+                
+                if(_engineAttr && _engineAttr.customStructProvider)
+                {//add custom struct value to argList
+                    size_t s = [_engineAttr.customStructProvider sizeOfStruct:typeString];
+                    char *result = calloc(s, 1);
+                    [invocation getArgument:result atIndex:i];
+                    id dic = [_engineAttr.customStructProvider dictOfStruct:result name:typeString];
+                    free(result);
+                    [argList addObject:dic];
+                }
+                
                 break;
             }
             default: {
@@ -565,6 +583,15 @@ static id callSelector(NSString *className, NSString *selectorName, NSArray *arg
                 JP_CALL_ARG_STRUCT(CGSize, dictToSize)
                 JP_CALL_ARG_STRUCT(NSRange, dictToRange)
                 
+                if(_engineAttr && _engineAttr.customStructProvider)
+                {//set custom struct value
+                    size_t s = [_engineAttr.customStructProvider sizeOfStruct:typeString];
+                    char *result = calloc(s, 1);
+                    [_engineAttr.customStructProvider structData:result OfDict:valObj name:typeString];
+                    [invocation setArgument:result atIndex:i];
+                    free(result);
+                }
+                
                 break;
             }
             default: {
@@ -627,6 +654,16 @@ static id callSelector(NSString *className, NSString *selectorName, NSArray *arg
                     JP_CALL_RET_STRUCT(CGPoint, pointToDictionary)
                     JP_CALL_RET_STRUCT(CGSize, sizeToDictionary)
                     JP_CALL_RET_STRUCT(NSRange, rangeToDictionary)
+                    
+                    if(_engineAttr && _engineAttr.customStructProvider)
+                    {//get custom struct value
+                        size_t s = [_engineAttr.customStructProvider sizeOfStruct:typeString];
+                        char *result = calloc(s, 1);
+                        [invocation getReturnValue:result];
+                        id dic = [_engineAttr.customStructProvider dictOfStruct:result name:typeString];
+                        free(result);
+                        return dic;
+                    }
                 }
                     break;
             }

@@ -27,8 +27,12 @@ var global = this;
     },
     funcOverrideParentMethod:function(){
       return "overrided";
+    },
+    testFuncReturnMyStruct:function(){
+      var s = self.funcReturnMyStruct();
+      self.setFuncReturnMyStructValue("struct:p1=" + s.p1 + ",p2=" + s.p2);
+      return self.funcReturnMyStructValue();
     }
-    
   },
   {
     classFuncToSwizzle_int: function(o, num) {
