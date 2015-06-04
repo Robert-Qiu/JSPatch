@@ -32,6 +32,18 @@ var global = this;
       var s = self.funcReturnMyStruct();
       self.setFuncReturnMyStructValue("struct:p1=" + s.p1 + ",p2=" + s.p2);
       return self.funcReturnMyStructValue();
+    },
+    funcToSwizzleReturnRect: function(rect) {
+      return rect;
+    },
+    funcToSwizzleReturnSize: function(size) {
+      return size;
+    },
+    funcToSwizzleReturnPoint: function(point) {
+      return point;
+    },
+    funcToSwizzleReturnRange: function(range) {
+      return range;
     }
   },
   {

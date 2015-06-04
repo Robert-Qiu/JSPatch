@@ -49,6 +49,10 @@ typedef struct MyStruct
 @property (nonatomic, assign) BOOL funcToSwizzleReturnIntPassed;
 @property (nonatomic, assign) BOOL funcToSwizzleWithBlockPassed;
 @property (nonatomic, assign) BOOL funcToSwizzle_withUnderLine_Passed;
+@property (nonatomic, assign) BOOL funcToSwizzleReturnRectPassed;
+@property (nonatomic, assign) BOOL funcToSwizzleReturnPointPassed;
+@property (nonatomic, assign) BOOL funcToSwizzleReturnSizePassed;
+@property (nonatomic, assign) BOOL funcToSwizzleReturnRangePassed;
 @property (nonatomic, assign) BOOL classFuncToSwizzlePassed;
 @property (nonatomic, assign) BOOL classFuncToSwizzleReturnObjPassed;
 @property (nonatomic, assign) BOOL classFuncToSwizzleReturnObjCalledOriginalPassed;
