@@ -57,12 +57,14 @@ static NSRegularExpression* regex;
         return callSelector(className, selectorName, arguments, nil, NO);
     };
     context[@"_OC_getBlockArguments"] = ^id(NSNumber *idx) {
-        if (_cacheArguments[idx]) {
-            id args = _cacheArguments[idx];
-            [_cacheArguments removeObjectForKey:idx];
-            return args;
+        @synchronized(_cacheArguments) {
+            if (_cacheArguments[idx]) {
+                id args = _cacheArguments[idx];
+                [_cacheArguments removeObjectForKey:idx];
+                return args;
+            }
+            return nil;
         }
-        return nil;
     };
     
     __weak JSContext *weakCtx = nil;
@@ -384,12 +386,15 @@ static void JPForwardInvocation(id slf, SEL selector, NSInvocation *invocation)
             }
         }
     }
-    _TMPInvocationArguments = formatOCObj(argList);
-
-    [invocation setSelector:JPSelector];
-    [invocation invoke];
     
-    _TMPInvocationArguments = nil;
+    @synchronized(_context) {
+        _TMPInvocationArguments = formatOCObj(argList);
+
+        [invocation setSelector:JPSelector];
+        [invocation invoke];
+        
+        _TMPInvocationArguments = nil;
+    }
 }
 
 static void _initJPOverideMethods(NSString *clsName) {
@@ -717,7 +722,9 @@ static id genCallbackBlock(id valObj)
 #define BLK_END \
     NSNumber *jsCallbackID = valObj[@"cbID"];   \
     NSInteger cacheKey = _cacheArgumentsIdx++;  \
-    _cacheArguments[@(cacheKey)] = list;    \
+    @synchronized(_cacheArguments) {   \
+        _cacheArguments[@(cacheKey)] = list;    \
+    }   \
     NSString *script = [NSString stringWithFormat:@"_callCB(%@, %@)", jsCallbackID, @(cacheKey)];   \
     [JPEngine evaluateScript:script];   \
 };
@@ -816,6 +823,7 @@ static id formatOCObj(id obj) {
     if ([obj isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
         for (NSString *key in [obj allKeys]) {
+            if ([key isEqualToString:@"__c"]) continue;
             [newDict setObject:formatOCObj(obj[key]) forKey:key];
         }
         return newDict;
