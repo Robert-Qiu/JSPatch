@@ -7,6 +7,12 @@ var global = this;
     }
   });
  
+  defineClass("JPInheritTest01ObjectB", {
+    m3: function() {
+      return "JP_01ObjB_m3";
+    }
+  });
+ 
 
   defineClass("JPInheritTest02ObjectB", {
     m1: function() {

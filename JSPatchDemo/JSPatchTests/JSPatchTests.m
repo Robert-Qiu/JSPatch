@@ -177,6 +177,8 @@
     XCTAssertNotEqualObjects(t1m1Return, [t1objB m1]);
     XCTAssertEqualObjects(@"JP_01ObjB_m1", [t1objB m1]);
     XCTAssertEqualObjects(t1m2Return,[t1objB m2]);
+    XCTAssertEqualObjects(@"JP_01ObjB_m3",[t1objB m3]);
+    
     
     /*Test 2*/
     XCTAssertEqualObjects(t2m1Return,[t2objA m1]);

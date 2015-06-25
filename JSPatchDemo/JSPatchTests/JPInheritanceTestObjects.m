@@ -20,6 +20,11 @@
     return @"01ObjA_m2";
 }
 
+- (NSString*)m3
+{
+    return @"01ObjA_m3";
+}
+
 @end
 
 @implementation JPInheritTest01ObjectB
